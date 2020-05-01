@@ -8,8 +8,8 @@ for i in mylist:
     print(i)
 
 # All iterables have a dunder method called __iter__()
-# >>> dir(mylist)
-# [...__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__']
+dir(mylist)
+# e.g. [...__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__init_subclass__', '__iter__', '__le__']
 
 # Something can be iterated if it has the iter method
 
@@ -40,13 +40,18 @@ while True:
 # Generators - they are iterators that yield a value
 # When they yield a value - they keep that state until that generator is run again with the next yield
 
-def square_generators():
-    for i in range(5):
-        yield i**2
+def primes(max):
+    number = 1
+    while number < max:
+        number += 1 
+        if check_prime(number):
+            yield number
 
-gen = square_generators()
-next(gen)
-# This produces the same result - without you having to convert the list iterable to an iterator first
+prime_numbers = primes(100)
+
+for i in prime_numbers:
+    print(i)
+
 
 # May have noticed that i had to re-instantiate gen - why?
 # Generators calculate values on the fly - they are lazy almost - they dont do anything until you iterate through them
